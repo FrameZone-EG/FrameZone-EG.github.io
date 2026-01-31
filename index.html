@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<link rel="icon" type="image/png" href="/Logo.png">
+<meta charset="UTF-8">
+<title>Framezone Poster Store</title>
+
+<style>
+body{
+    margin:0;
+    font-family:Arial,sans-serif;
+    background:#0f0f0f;
+    color:white;
+}
+header{
+    padding:25px;
+    text-align:center;
+    font-size:42px;
+    font-weight:bold;
+    color:#00cfff;
+    text-shadow:0 0 10px #00cfff;
+}
+
+/* ---------- TABS ---------- */
+.tabs{
+    display:flex;
+    justify-content:center;
+    gap:20px;
+    padding-bottom:30px;
+}
+.tab{
+    border:2px solid #00cfff;
+    background:transparent;
+    color:#00cfff;
+    padding:10px 25px;
+    border-radius:30px;
+    cursor:pointer;
+    transition:.3s;
+}
+.tab:hover,.tab.active{
+    background:#00cfff;
+    color:black;
+    box-shadow:0 0 15px #00cfff;
+}
+
+/* ---------- SECTIONS ---------- */
+.section{display:none;opacity:0;transform:translateY(30px)}
+.section.active{
+    display:block;
+    animation:fade .6s forwards;
+}
+@keyframes fade{
+    to{opacity:1;transform:translateY(0)}
+}
+
+/* ---------- GRID ---------- */
+.grid{
+    padding:60px;
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:40px;
+}
+.card{
+    background:#1b1b1b;
+    border-radius:20px;
+    overflow:hidden;
+    cursor:pointer;
+    transform:scale(.9);
+    opacity:0;
+    animation:pop .6s forwards;
+}
+@keyframes pop{
+    to{opacity:1;transform:scale(1)}
+}
+.card:hover{
+    transform:scale(1.05);
+    box-shadow:0 0 20px #00cfff;
+}
+.card img{
+    width:100%;
+    height:400px;
+    object-fit:contain;
+    background:#111;
+}
+.card p{
+    text-align:center;
+    padding:15px;
+    font-size:22px;
+    color:#00cfff;
+}
+
+/* ---------- SERVICE ---------- */
+.service-box{
+    max-width:700px;
+    margin:60px auto;
+    background:#1b1b1b;
+    padding:40px;
+    border-radius:20px;
+    text-align:center;
+    box-shadow:0 0 20px #00cfff;
+}
+
+/* ---------- CART BUTTON ---------- */
+#cartButton{
+    position:fixed;
+    right:30px;
+    bottom:30px;
+    width:70px;
+    height:70px;
+    border-radius:50%;
+    font-size:28px;
+    border:none;
+    background:#00cfff;
+    cursor:pointer;
+    box-shadow:0 0 20px #00cfff;
+}
+
+/* ---------- MODAL ---------- */
+.modal{
+    display:none;
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.9);
+    justify-content:center;
+    align-items:center;
+    z-index:1000;
+}
+.modal-content{
+    background:#1c1c1c;
+    padding:30px;
+    border-radius:20px;
+    width:80%;
+    max-width:600px;
+    animation:zoom .4s;
+    display:flex;
+    flex-direction:row;
+    gap:20px;
+    flex-wrap:wrap;
+    align-items:center;
+    justify-content:center;
+}
+@keyframes zoom{
+    from{transform:scale(.7);opacity:0}
+    to{transform:scale(1);opacity:1}
+}
+.modal img{
+    width:100%;
+    border-radius:12px;
+    max-width:200px;
+}
+input,textarea,button{
+    width:100%;
+    padding:12px;
+    margin-top:10px;
+    border-radius:10px;
+    border:none;
+}
+button{
+    background:#00cfff;
+    font-weight:bold;
+    cursor:pointer;
+}
+.close{
+    width:100%;
+    text-align:right;
+    cursor:pointer;
+}
+
+/* ---------- RESPONSIVE ---------- */
+@media(max-width:800px){
+    .modal-content{
+        flex-direction:column !important;
+    }
+    .modal-content img{
+        max-width:250px !important;
+    }
+}
+</style>
+<head><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3275620457652928"
+     crossorigin="anonymous"></script></head>
+
+     <head><meta name="google-adsense-account" content="ca-pub-3275620457652928"></head>
+
+</head>
+
+<body>
+
+<header>🖼️ Framezone</header>
+
+<nav class="tabs">
+    <button class="tab active" onclick="showSection('home',this)">Home</button>
+    <button class="tab" onclick="showSection('more',this)">More Posters</button>
+    <button class="tab" onclick="showSection('service',this)">Service</button>
+</nav>
+
+<!-- HOME -->
+<div id="home" class="section active">
+<div class="grid">
+    <div class="card" onclick="openPosterModal('Barcalona (350 EGP)','poster2.jpeg')">
+        <img src="poster2.jpeg"><p>Barcalona (350 EGP)</p>
+    </div>
+    <div class="card" onclick="openPosterModal('BMW M4 (350 EGP)','poster4.jpeg')">
+        <img src="poster4.jpeg"><p>BMW M4 (350 EGP)</p>
+    </div>
+    <div class="card" onclick="openCustomModal('Custom Poster (400 EGP)','poster6.jpg')">
+        <img src="poster6.jpg"><p>Custom Poster (400 EGP)</p>
+    </div>
+    <div class="card" onclick="openPosterModal('Dont Give Up (350 EGP) ','poster7.jpeg')">
+        <img src="poster7.jpeg"><p>Don't Give Up (350 EGP)</p>
+    </div>
+    <div class="card" onclick="openPosterModal('Nissan Skyline (350 EGP)','poster8.jpeg')">
+        <img src="poster8.jpeg"><p>Nissan Skyline (350 EGP)</p>
+    </div>
+    <div class="card" onclick="openPosterModal('Classic Ronlado (350 EGP)','poster10.jpeg')">
+        <img src="poster10.jpeg"><p>Classic Ronaldo (350 EGP)</p>
+    </div>
+    <div class="card" onclick="openPosterModal('Be In Yourself (350 EGP)','poster19.jpg')">
+        <img src="poster19.jpg"><p>Be In Yourself (350 EGP)</p>
+    </div>
+    <div class="card" onclick="openPosterModal('Always Be GreatFull (350 EGP)','poster20.jpg')">
+        <img src="poster20.jpg"><p>Always Be GreatFull (350 EGP)</p>
+    </div>
+    <div class="card" onclick="openPosterModal('Fortnite (350 EGP)','poster21.jpg')">
+        <img src="poster21.jpg"><p>Fortnite (350 EGP)</p>
+    </div>
+    
+</div>
+</div>
+
+<!-- MORE -->
+<div id="more" class="section">
+<div class="grid">
+    <div class="card" onclick="openPosterModal('Lamine Yamel(350 EGP)','poster3.jpeg')">
+        <img src="poster3.jpeg"><p>Lamine Yamel (350 EGP)</p>
+    </div>
+    <div class="card" onclick="openPosterModal('Dont Give Up (350 EGP)','poster11.jpg')">
+        <img src="poster11.jpg"><p>Don't Give Up (350 EGP)</p>
+    </div>
+    <div class="card" onclick="openPosterModal('Audi (350 EGP)','poster12.jpg')">
+        <img src="poster12.jpg"><p>Audi R8 (350 EGP)</p>
+    </div>
+    <div class="card" onclick="openPosterModal('Supra (350 EGP)','poster13.jpg')">
+        <img src="poster13.jpg"><p>Supra (350 EGP) </p>
+    </div>
+    <div class="card" onclick="openPosterModal('Classic Messi (350 EGP)','poster14.jpg')">
+        <img src="poster14.jpg"><p>Classic Messi (350 EGP) </p>
+    </div>
+    <div class="card" onclick="openPosterModal('Ronlado (350 EGP)','poster15.jpg')">
+        <img src="poster15.jpg"><p>Ronlado T-Shirt (350 EGP)</p>
+    </div>
+    <div class="card" onclick="openPosterModal('Believe in Yourself (350 EGP)','poster16.jpg')">
+        <img src="poster16.jpg"><p>Believe in Yourself (350 EGP) </p>
+    </div>
+    <div class="card" onclick="openPosterModal('Even if its HARD You Can (350 EGP)','poster17.jpg')">
+        <img src="poster17.jpg"><p>Even if its HARD You Can (350 EGP) </p>
+    </div>
+    <div class="card" onclick="openPosterModal('FC 26 (350 EGP)','poster18.jpg')">
+        <img src="poster18.jpg"><p>FC 26 (350 EGP) </p>
+    </div>
+     <div class="card" onclick="openPosterModal('Call Of Duty (350 EGP)','poster22.jpg')">
+        <img src="poster22.jpg"><p>Call Of Duty (350 EGP) </p>
+    </div>
+     <div class="card" onclick="openPosterModal('Think Out Of The Box (350 EGP)','poster23.jpg')">
+        <img src="poster23.jpg"><p>Think Out Of The Box (350 EGP) </p>
+    </div>
+     <div class="card" onclick="openPosterModal('Work on Yourself (350 EGP)','poster24.jpg')">
+        <img src="poster24.jpg"><p>Work on Yourself (350 EGP) </p>
+    </div>
+     <div class="card" onclick="openPosterModal('Palmer (350 EGP)','poster25.jpg')">
+        <img src="poster25.jpg"><p>Palmer (350 EGP) </p>
+    </div>
+     <div class="card" onclick="openPosterModal('Real Madrid (350 EGP)','poster26.jpg')">
+        <img src="poster26.jpg"><p>Real Madrid (350 EGP) </p>
+    </div>
+     <div class="card" onclick="openPosterModal('Al Ahly (350 EGP)','poster27.jpg')">
+        <img src="poster27.jpg"><p>Al Ahly (350 EGP) </p>
+    </div>
+     <div class="card" onclick="openPosterModal('El Zamelik (350 EGP)','poster28.jpg')">
+        <img src="poster28.jpg"><p>El Zamelik (350 EGP) </p>
+    </div>
+
+</div>
+</div>
+
+<!-- SERVICE -->
+<div id="service" class="section">
+<div class="service-box">
+    <h2 style="color:#00cfff;">🛠 Our Services</h2>
+    <p>✔ Custom Posters</p>
+    <p>✔ High Quality Print</p>
+    <p>✔ Fast Delivery in Egypt</p>
+    <p>✔ WhatsApp & Email Orders</p>
+    <p>✔ Call us at 01013960173 </p>
+</div>
+</div>
+
+<button id="cartButton">🛒</button>
+
+<!-- ORDER MODAL -->
+<div class="modal" id="orderModal">
+  <div class="modal-content">
+    <div class="close" onclick="closeOrderModal()">✖</div>
+
+    <!-- Poster preview -->
+    <div style="flex:1; min-width:150px; max-width:200px;">
+      <img id="posterImage">
+    </div>
+
+    <!-- Form -->
+    <div style="flex:2; min-width:250px;">
+      <h3 id="posterTitle" style="color:#00cfff; text-align:center;"></h3>
+      <form id="orderForm" action="https://formsubmit.co/dx05148@gmail.com" method="POST">
+        <input type="hidden" name="_subject" value="Poster Order">
+        <input type="hidden" name="_captcha" value="false">
+        <input type="hidden" name="Poster" id="posterInput">
+
+        <input type="text" name="Name" placeholder="Your Name" required>
+        <input type="tel" name="Phone" placeholder="Phone Number" required>
+        <textarea name="Address" placeholder="Your Address" required></textarea>
+
+        <button type="button" onclick="submitPosterWhatsApp()">Buy via WhatsApp -Cash On Delivery- </button>
+<button type="submit" style="margin-top:10px;">Buy via Email -Cash On Delivery-</button>
+
+<button type="button" onclick="submitFawry()" style="margin-top:10px;">
+🧾 Buy via Fawry
+</button>
+
+<button type="button" onclick="submitVisa()" style="margin-top:10px;">
+💳 Buy via Visa
+</button>
+
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- CUSTOM POSTER MODAL -->
+<div class="modal" id="customModal">
+  <div class="modal-content" style="flex-direction:column;">
+    <div class="close" onclick="closeCustomModal()">✖</div>
+    <h3 style="color:#00cfff;">Custom Poster</h3>
+
+    <img id="previewImage" style="display:none;margin-bottom:10px; max-width:250px;">
+
+    <form action="https://formsubmit.co/dx05148@gmail.com" method="POST" enctype="multipart/form-data">
+      <input type="hidden" name="_subject" value="Custom Poster Order">
+      <input type="hidden" name="_captcha" value="false">
+
+      <input type="text" name="Name" placeholder="Your Name" required>
+      <input type="tel" name="Phone" placeholder="Phone Number" required>
+      <textarea name="Address" placeholder="Address" required></textarea>
+
+      <input type="file" name="Photo" accept="image/*" onchange="previewPhoto(event)" required>
+      <textarea name="Notes" placeholder="Notes (optional)"></textarea>
+
+      <button type="submit">Order via Email (with photo)</button>
+      <button type="button" onclick="customWhatsApp()">Order via WhatsApp</button>
+    </form>
+  </div>
+</div>
+
+<script>
+function showSection(id,btn){
+    document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
+    document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+    btn.classList.add('active');
+}
+
+// Normal Posters
+function openPosterModal(title,image){
+    document.getElementById("posterTitle").innerText=title;
+    document.getElementById("posterInput").value=title;
+    document.getElementById("posterImage").src=image;
+    document.getElementById("orderModal").style.display="flex";
+}
+function closeOrderModal(){document.getElementById("orderModal").style.display="none"}
+function submitPosterWhatsApp(){
+    const name=document.querySelector('[name="Name"]').value;
+    const phone=document.querySelector('[name="Phone"]').value;
+    const address=document.querySelector('[name="Address"]').value;
+    const poster=document.getElementById("posterInput").value;
+    if(!name||!phone||!address){alert('Please fill all fields!');return;}
+    const message=`Order for ${poster}%0AName: ${name}%0APhone: ${phone}%0AAddress: ${address}`;
+    window.open(`https://wa.me/201013960173?text=${message}`,'_blank');
+}
+
+// Custom Poster
+function openCustomModal(){customModal.style.display="flex"}
+function closeCustomModal(){customModal.style.display="none"}
+function previewPhoto(e){
+    previewImage.src=URL.createObjectURL(e.target.files[0]);
+    previewImage.style.display="block";
+}
+function customWhatsApp(){
+    window.open("https://wa.me/201013960173?text=Custom Poster Order 📸%0APhoto sent via Email","_blank");
+}
+function submitFawry(){
+    const name = document.querySelector('[name="Name"]').value;
+    const phone = document.querySelector('[name="Phone"]').value;
+    const address = document.querySelector('[name="Address"]').value;
+    const poster = document.getElementById("posterInput").value;
+
+    if(!name || !phone || !address){
+        alert("Please fill all fields");
+        return;
+    }
+
+    const paymentInfo = `
+Payment Method: Fawry
+Poster: ${poster}
+Name: ${name}
+Phone: ${phone}
+Address: ${address}
+Amount: 350-400 EGP
+    `;
+
+    window.open(
+        `https://wa.me/201559018191?text=${encodeURIComponent(paymentInfo)}`,
+        "_blank"
+    );
+}
+
+function submitVisa(){
+    const name = document.querySelector('[name="Name"]').value;
+    const phone = document.querySelector('[name="Phone"]').value;
+    const address = document.querySelector('[name="Address"]').value;
+    const poster = document.getElementById("posterInput").value;
+
+    if(!name || !phone || !address){
+        alert("Please fill all fields");
+        return;
+    }
+
+    const paymentInfo = `
+Payment Method: Visa
+Poster: ${poster}
+Name: ${name}
+Phone: ${phone}
+Address: ${address}
+Amount: 150 EGP
+    `;
+
+    window.open(
+        `https://wa.me/201013960173?text=${encodeURIComponent(paymentInfo)}`,
+        "_blank"
+    );
+}
+</script>
+
+</body>
+</html>
